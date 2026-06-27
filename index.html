@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Majjells Restaurant — Halo-Halo, Comfort Food & More</title>
+<meta name="description" content="Majjells Restaurant — a cozy Filipino kitchen serving snacks, desserts, lunch and dinner. Famous for halo-halo, sandwiches, and warm comfort food. Powered by @Zero." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;0,9..144,900;1,9..144,400;1,9..144,500&family=Karla:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --cream:#FBF6EC;
+    --cream-2:#F3E9D6;
+    --espresso:#3A2A1E;
+    --espresso-soft:#5A4636;
+    --caramel:#9A6A3C;
+    --red:#C2412D;
+    --gold:#D99A2B;
+    --ube:#6E4B8E;
+    --green:#5E7C4E;
+    --line:rgba(58,42,30,.14);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--cream);
+    color:var(--espresso);
+    font-family:"Karla",system-ui,sans-serif;
+    font-size:17px;
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  h1,h2,h3,.display{font-family:"Fraunces",Georgia,serif;}
+  a{color:inherit;text-decoration:none}
+  img{display:block;max-width:100%}
+  .wrap{width:min(1180px,92vw);margin-inline:auto}
+  .eyebrow{
+    font-family:"Karla",sans-serif;
+    font-weight:700;letter-spacing:.22em;text-transform:uppercase;
+    font-size:.72rem;color:var(--red);
+    display:inline-flex;align-items:center;gap:.6rem;
+  }
+  .eyebrow::before{content:"";width:26px;height:2px;background:var(--gold)}
+
+  /* ---- Signature: halo-halo layered ribbon ---- */
+  .ribbon{display:flex;height:8px;width:100%}
+  .ribbon span{flex:1}
+  .ribbon span:nth-child(1){background:var(--ube)}
+  .ribbon span:nth-child(2){background:var(--red)}
+  .ribbon span:nth-child(3){background:var(--gold)}
+  .ribbon span:nth-child(4){background:var(--green)}
+  .ribbon span:nth-child(5){background:var(--caramel)}
+
+  /* ---- Nav ---- */
+  header.nav{
+    position:fixed;top:0;left:0;right:0;z-index:50;
+    transition:background .35s ease,box-shadow .35s ease,padding .35s ease;
+    padding:18px 0;
+  }
+  header.nav.scrolled{
+    background:rgba(251,246,236,.92);
+    backdrop-filter:blur(10px);
+    box-shadow:0 1px 0 var(--line);
+    padding:10px 0;
+  }
+  .nav-inner{display:flex;align-items:center;justify-content:space-between;gap:1rem}
+  .brand{display:flex;align-items:center;gap:.7rem;font-family:"Fraunces";font-weight:700;font-size:1.25rem;color:var(--cream)}
+  header.nav.scrolled .brand{color:var(--espresso)}
+  .brand img{width:42px;height:42px;border-radius:50%;object-fit:cover;border:2px solid var(--gold)}
+  .nav-links{display:flex;gap:1.8rem;align-items:center}
+  .nav-links a{font-weight:600;font-size:.95rem;color:var(--cream);position:relative;transition:color .2s}
+  header.nav.scrolled .nav-links a{color:var(--espresso-soft)}
+  .nav-links a:not(.btn)::after{content:"";position:absolute;left:0;bottom:-4px;height:2px;width:0;background:var(--red);transition:width .25s}
+  .nav-links a:not(.btn):hover::after{width:100%}
+  .btn{
+    display:inline-flex;align-items:center;gap:.5rem;
+    background:var(--red);color:var(--cream)!important;
+    padding:.6rem 1.25rem;border-radius:999px;font-weight:700;font-size:.92rem;
+    transition:transform .2s,box-shadow .2s,background .2s;
+    border:none;cursor:pointer;
+  }
+  .btn:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(194,65,45,.32);background:#a8331f}
+  .btn.ghost{background:transparent;border:2px solid var(--cream);color:var(--cream)!important}
+  .btn.ghost:hover{background:var(--cream);color:var(--espresso)!important;box-shadow:none}
+  .nav-toggle{display:none;background:none;border:none;color:var(--cream);cursor:pointer}
+  header.nav.scrolled .nav-toggle{color:var(--espresso)}
+
+  /* ---- Hero ---- */
+  .hero{position:relative;min-height:100svh;display:flex;align-items:center;color:var(--cream);overflow:hidden}
+  .hero-bg{position:absolute;inset:0;z-index:0}
+  .hero-bg img{width:100%;height:100%;object-fit:cover;transform:scale(1.05);animation:slowzoom 18s ease-in-out infinite alternate}
+  @keyframes slowzoom{to{transform:scale(1.14)}}
+  .hero-bg::after{content:"";position:absolute;inset:0;background:linear-gradient(105deg,rgba(36,24,16,.86) 0%,rgba(58,42,30,.62) 48%,rgba(58,42,30,.25) 100%)}
+  .hero-content{position:relative;z-index:2;padding-top:90px}
+  .hero h1{font-size:clamp(3rem,8vw,6.4rem);line-height:.96;font-weight:600;letter-spacing:-.01em}
+  .hero h1 em{font-style:italic;color:var(--gold);font-weight:500}
+  .hero .lead{max-width:30rem;margin-top:1.4rem;font-size:1.12rem;color:#f1e7d6}
+  .hero-cta{display:flex;gap:1rem;margin-top:2.2rem;flex-wrap:wrap}
+  .hero-tag{margin-top:2.6rem;font-size:.8rem;letter-spacing:.18em;text-transform:uppercase;color:#e9d9bd;opacity:.85}
+  .hero-ribbon{position:absolute;left:0;right:0;bottom:0;z-index:3}
+  .reveal{opacity:0;transform:translateY(26px);transition:opacity .8s ease,transform .8s ease}
+  .reveal.in{opacity:1;transform:none}
+  .reveal.d1{transition-delay:.1s}.reveal.d2{transition-delay:.22s}.reveal.d3{transition-delay:.34s}
+
+  /* ---- Section frame ---- */
+  section{padding:clamp(4rem,9vw,7.5rem) 0}
+  .sec-head{max-width:42rem;margin-bottom:3rem}
+  .sec-head h2{font-size:clamp(2rem,5vw,3.2rem);line-height:1.05;margin-top:1rem;font-weight:600}
+  .sec-head p{margin-top:1rem;color:var(--espresso-soft)}
+
+  /* ---- About ---- */
+  .about{background:var(--cream)}
+  .about-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(2rem,5vw,4.5rem);align-items:center}
+  .about-copy h2{font-size:clamp(2rem,5vw,3.2rem);line-height:1.05;font-weight:600;margin-top:1rem}
+  .about-copy p{margin-top:1.2rem;color:var(--espresso-soft)}
+  .about-copy .signoff{margin-top:1.5rem;font-family:"Fraunces";font-style:italic;font-size:1.15rem;color:var(--caramel)}
+  .about-media{position:relative}
+  .about-media .m1{border-radius:14px;box-shadow:0 24px 50px rgba(58,42,30,.22);width:100%;aspect-ratio:4/5;object-fit:cover}
+  .about-media .m2{position:absolute;width:48%;aspect-ratio:1;object-fit:cover;border-radius:12px;right:-6%;bottom:-8%;border:6px solid var(--cream);box-shadow:0 18px 36px rgba(58,42,30,.28)}
+  .about-stats{display:flex;gap:2.4rem;margin-top:2rem;flex-wrap:wrap}
+  .stat .n{font-family:"Fraunces";font-size:2rem;font-weight:700;color:var(--red);line-height:1}
+  .stat .l{font-size:.82rem;letter-spacing:.06em;color:var(--espresso-soft);text-transform:uppercase;margin-top:.3rem}
+
+  /* ---- Menu ---- */
+  .menu{background:var(--espresso);color:var(--cream);position:relative}
+  .menu .eyebrow{color:var(--gold)}
+  .menu .eyebrow::before{background:var(--red)}
+  .menu .sec-head p{color:#d9c8b0}
+  .tabs{display:flex;gap:.6rem;flex-wrap:wrap;margin-bottom:2.6rem}
+  .tab{
+    font-family:"Karla";font-weight:700;font-size:.9rem;letter-spacing:.04em;
+    padding:.55rem 1.2rem;border-radius:999px;cursor:pointer;
+    background:transparent;color:#e7d7bd;border:1.5px solid rgba(231,215,189,.32);
+    transition:all .22s;
+  }
+  .tab:hover{border-color:var(--gold);color:var(--cream)}
+  .tab.active{background:var(--gold);color:var(--espresso);border-color:var(--gold)}
+  .menu-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:1.4rem}
+  .card{
+    background:#311f14;border-radius:14px;overflow:hidden;
+    border:1px solid rgba(231,215,189,.1);
+    transition:transform .3s ease,box-shadow .3s ease;
+    display:flex;flex-direction:column;
+  }
+  .card:hover{transform:translateY(-6px);box-shadow:0 20px 40px rgba(0,0,0,.4)}
+  .card-img{position:relative;aspect-ratio:4/3;overflow:hidden}
+  .card-img img{width:100%;height:100%;object-fit:cover;transition:transform .55s ease}
+  .card:hover .card-img img{transform:scale(1.08)}
+  .card-img .tagpill{position:absolute;top:.7rem;left:.7rem;background:rgba(58,42,30,.78);backdrop-filter:blur(4px);color:var(--gold);font-size:.66rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:.28rem .6rem;border-radius:999px}
+  .card-body{padding:1rem 1.1rem 1.2rem}
+  .card-body h3{font-size:1.18rem;font-weight:600;line-height:1.2}
+  .card-body p{font-size:.88rem;color:#cdb8e0;color:#cdbb9e;margin-top:.35rem;line-height:1.5}
+
+  /* ---- Gallery ---- */
+  .gallery{background:var(--cream-2)}
+  .masonry{display:grid;grid-template-columns:repeat(4,1fr);gap:1.2rem}
+  .masonry figure{position:relative;border-radius:14px;overflow:hidden;box-shadow:0 12px 28px rgba(58,42,30,.16)}
+  .masonry figure img{width:100%;height:100%;aspect-ratio:4/5;object-fit:cover;transition:transform .55s ease}
+  .masonry figure:hover img{transform:scale(1.06)}
+  .masonry figcaption{
+    position:absolute;left:0;right:0;bottom:0;
+    background:linear-gradient(transparent,rgba(36,24,16,.9));
+    color:var(--cream);font-size:.9rem;font-weight:600;
+    padding:2.2rem .9rem .9rem;
+  }
+
+  /* ---- Contact ---- */
+  .contact{background:var(--red);color:var(--cream);position:relative;overflow:hidden}
+  .contact .ribbon{position:absolute;top:0;left:0;right:0}
+  .contact-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(2rem,5vw,4rem);align-items:center}
+  .open-sign{
+    background:var(--cream);color:var(--espresso);border-radius:16px;padding:2.4rem 2rem;text-align:center;
+    box-shadow:0 26px 60px rgba(0,0,0,.3);position:relative;
+    border:3px solid var(--gold);
+  }
+  .open-sign .knob{width:14px;height:14px;border-radius:50%;background:var(--espresso);margin:0 auto;}
+  .open-sign .cord{width:2px;height:26px;background:rgba(58,42,30,.4);margin:0 auto 4px}
+  .open-sign .ot{font-family:"Fraunces";font-style:italic;color:var(--caramel);font-size:1rem}
+  .open-sign .ob{font-family:"Fraunces";font-weight:700;font-size:2.4rem;line-height:1;margin:.3rem 0 .6rem;color:var(--red)}
+  .open-sign .oh{font-size:.82rem;letter-spacing:.04em;color:var(--espresso-soft)}
+  .open-sign .dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--green);margin-right:.4rem;animation:pulse 2s infinite}
+  @keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
+  .contact h2{font-size:clamp(2rem,5vw,3.2rem);line-height:1.05;font-weight:600;margin-top:1rem}
+  .contact .lead{margin-top:1rem;color:#ffe9d8;max-width:30rem}
+  .contact .eyebrow{color:#ffd9b0}
+  .contact .eyebrow::before{background:var(--gold)}
+  .clist{margin-top:1.8rem;display:flex;flex-direction:column;gap:.2rem}
+  .crow{display:flex;align-items:center;gap:1rem;padding:.9rem 0;border-bottom:1px solid rgba(255,255,255,.2)}
+  .crow .ico{width:42px;height:42px;flex:none;border-radius:50%;background:rgba(255,255,255,.16);display:grid;place-items:center;font-size:1.1rem}
+  .crow .ck{font-size:.74rem;letter-spacing:.12em;text-transform:uppercase;opacity:.8}
+  .crow .cv{font-weight:700;font-size:1.05rem}
+  .crow a.cv:hover{text-decoration:underline}
+
+  /* ---- Footer ---- */
+  footer{background:var(--espresso);color:#d9c8b0;padding:3.5rem 0 2rem;text-align:center}
+  footer .flogo{width:64px;height:64px;border-radius:50%;object-fit:cover;border:2px solid var(--gold);margin:0 auto 1rem}
+  footer .fname{font-family:"Fraunces";font-size:1.5rem;color:var(--cream);font-weight:700}
+  footer .ftag{font-style:italic;font-family:"Fraunces";color:var(--gold);margin-top:.2rem}
+  footer .fnav{display:flex;gap:1.6rem;justify-content:center;flex-wrap:wrap;margin:1.6rem 0;font-weight:600;font-size:.92rem}
+  footer .fnav a:hover{color:var(--gold)}
+  footer .fbar{border-top:1px solid rgba(231,215,189,.15);padding-top:1.4rem;margin-top:1.4rem;font-size:.82rem;opacity:.7}
+  footer .fcredit{margin-top:.7rem;font-size:.8rem;letter-spacing:.08em;color:#bda884}
+  footer .fcredit span{font-family:"Fraunces";font-style:italic;font-weight:600;color:var(--gold)}
+
+  /* ---- Responsive ---- */
+  @media(max-width:880px){
+    .nav-links{
+      position:fixed;inset:0 0 0 auto;width:min(78vw,320px);
+      background:var(--espresso);flex-direction:column;align-items:flex-start;
+      padding:6rem 2rem 2rem;gap:1.4rem;transform:translateX(100%);transition:transform .35s ease;
+      box-shadow:-10px 0 40px rgba(0,0,0,.3);
+    }
+    .nav-links.open{transform:none}
+    .nav-links a{color:var(--cream)!important}
+    .nav-toggle{display:block;z-index:60}
+    header.nav .nav-toggle{color:var(--cream)}
+    .about-grid{grid-template-columns:1fr}
+    .about-media{max-width:420px;margin:1rem auto 2rem}
+    .contact-grid{grid-template-columns:1fr}
+    .masonry{grid-template-columns:repeat(2,1fr)}
+  }
+  @media(max-width:560px){
+    body{font-size:16px}
+    .masonry{grid-template-columns:1fr}
+    .hero-cta{flex-direction:column;align-items:stretch}
+    .hero-cta .btn{justify-content:center}
+  }
+  @media(prefers-reduced-motion:reduce){
+    *{animation:none!important}
+    html{scroll-behavior:auto}
+    .reveal{opacity:1;transform:none}
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<header class="nav" id="nav">
+  <div class="wrap nav-inner">
+    <a href="#top" class="brand"><img src="pictures/Logo.jpg" alt="Majjells logo" /> Majjells</a>
+    <nav class="nav-links" id="navLinks">
+      <a href="#about">About</a>
+      <a href="#menu">Menu</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#contact">Visit</a>
+      <a href="#contact" class="btn">Message Us</a>
+    </nav>
+    <button class="nav-toggle" id="navToggle" aria-label="Open menu" aria-expanded="false">
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+    </button>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero" id="top">
+  <div class="hero-bg"><img src="pictures/Aesthetic background of the restaurant.jpg" alt="The warm interior of Majjells Restaurant" /></div>
+  <div class="wrap hero-content">
+    <span class="eyebrow reveal in">A Cozy Filipino Kitchen</span>
+    <h1 class="reveal in d1">Comfort food,<br><em>halo-halo</em>, and a<br>seat that's yours.</h1>
+    <p class="lead reveal in d2">From midday merienda to a full dinner, Majjells serves snacks, desserts, and home-style favorites the whole table can share — made fresh, served warm.</p>
+    <div class="hero-cta reveal in d3">
+      <a href="#contact" class="btn">Visit Us</a>
+      <a href="https://www.facebook.com/majjells" target="_blank" rel="noopener" class="btn ghost">Message Us on Facebook</a>
+    </div>
+    <p class="hero-tag reveal in d3">Majjells · Powered by @Zero</p>
+  </div>
+  <div class="hero-ribbon ribbon" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span></div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="wrap about-grid">
+    <div class="about-copy">
+      <span class="eyebrow reveal">Our Story</span>
+      <h2 class="reveal d1">A neighborhood table where everyone's a regular.</h2>
+      <p class="reveal d1">Majjells started with a simple idea: make the food we'd want to feed our own family, and make room for everyone at the table. We're fancy enough for a celebration, easygoing enough for a Tuesday.</p>
+      <p class="reveal d2">Our kitchen runs all day — sweet snacks and shakes in the afternoon, sizzling plates and rice meals by dinner, and a tall, generous halo-halo whenever the day calls for one. Pastries and custom cakes are baked in-house, and we happily cook for a crowd with bulk orders.</p>
+      <div class="about-stats reveal d2">
+        <div class="stat"><div class="n">3.7K</div><div class="l">Facebook Family</div></div>
+        <div class="stat"><div class="n">40+</div><div class="l">Dishes &amp; Treats</div></div>
+        <div class="stat"><div class="n">All&nbsp;Day</div><div class="l">Snacks to Dinner</div></div>
+      </div>
+      <p class="signoff reveal d2">"Mix-mix everything good." — the Majjells way</p>
+    </div>
+    <div class="about-media reveal d1">
+      <img class="m1" src="pictures/Logo with aesthetic picture of the place.jpg" alt="Majjells signage and the restaurant space" />
+      <img class="m2" src="pictures/Halohalo with logo picture.jpg" alt="Majjells signature halo-halo" />
+    </div>
+  </div>
+</section>
+
+<!-- MENU -->
+<section class="menu" id="menu">
+  <div class="ribbon" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span></div>
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow reveal">From Our Kitchen</span>
+      <h2 class="reveal d1">Menu highlights</h2>
+      <p class="reveal d1">A taste of what's cooking. Tap a category to browse — from sizzling mains to that famous halo-halo.</p>
+    </div>
+    <div class="tabs reveal" id="tabs">
+      <button class="tab active" data-filter="all">All</button>
+      <button class="tab" data-filter="mains">Mains &amp; Savory</button>
+      <button class="tab" data-filter="sweets">Desserts &amp; Drinks</button>
+      <button class="tab" data-filter="pastry">Pastries</button>
+    </div>
+    <div class="menu-grid" id="menuGrid"></div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section class="gallery" id="gallery">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow reveal">Around Majjells</span>
+      <h2 class="reveal d1">A little look around</h2>
+      <p class="reveal d1">The menu cover, the signature halo-halo, and the big-batch orders we love cooking for your celebrations.</p>
+    </div>
+    <div class="masonry" id="masonry"></div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="ribbon" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span></div>
+  <div class="wrap contact-grid">
+    <div>
+      <span class="eyebrow reveal">Come Say Hi</span>
+      <h2 class="reveal d1">Please come in — we're open.</h2>
+      <p class="lead reveal d1">Pull up a chair, bring the family, or message us to plan an order. There's always a seat (and a halo-halo) waiting.</p>
+      <div class="clist reveal d2">
+        <div class="crow">
+          <div class="ico">📞</div>
+          <div><div class="ck">Call or Text</div><a class="cv" href="tel:+639178104362">0917 810 4362</a></div>
+        </div>
+        <div class="crow">
+          <div class="ico">✉️</div>
+          <div><div class="ck">Email</div><a class="cv" href="mailto:majjellsbusiness@gmail.com">majjellsbusiness@gmail.com</a></div>
+        </div>
+        <div class="crow">
+          <div class="ico">👍</div>
+          <div><div class="ck">Facebook · 3.7K followers</div><a class="cv" href="https://www.facebook.com/majjells" target="_blank" rel="noopener">Majjells Restaurant</a></div>
+        </div>
+      </div>
+    </div>
+    <div class="open-sign reveal d2">
+      <div class="cord"></div><div class="knob"></div>
+      <p class="ot" style="margin-top:1rem">Sorry, we're</p>
+      <p class="ob">OPEN</p>
+      <p class="oh"><span class="dot"></span>Walk in, dine in, or order ahead</p>
+      <a href="tel:+639178104362" class="btn" style="margin-top:1.4rem">Call to Reserve</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap">
+    <img class="flogo" src="pictures/Logo.jpg" alt="Majjells logo" />
+    <div class="fname">Majjells Restaurant</div>
+    <div class="ftag">Powered by @Zero</div>
+    <nav class="fnav">
+      <a href="#about">About</a>
+      <a href="#menu">Menu</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#contact">Visit Us</a>
+    </nav>
+    <div class="fbar">© <span id="yr"></span> Majjells Restaurant · 0917 810 4362 · majjellsbusiness@gmail.com</div>
+    <div class="fcredit">Designed &amp; developed by <span>fourloop()</span></div>
+  </div>
+</footer>
+
+<script>
+  const P = "pictures/";
+  // Menu data — every food/dessert/pastry image, with category + appetizing copy
+  const menu = [
+    // Mains & savory
+    {f:"Burger with Fries.jpg", n:"Burger with Fries", c:"mains", t:"Bestseller", d:"A hearty house burger stacked high, served with a golden tangle of fries."},
+    {f:"Fried Chicken.jpg", n:"Fried Chicken", c:"mains", d:"Crackly, golden, and juicy to the bone — the comfort-food classic."},
+    {f:"Korean Fried Chicken.jpg", n:"Korean Fried Chicken", c:"mains", t:"Sweet-Spicy", d:"Double-fried and glazed in a sticky sweet-and-spicy sauce."},
+    {f:"Sizzling Porkchop.jpg", n:"Sizzling Pork Chop", c:"mains", t:"On the Plate", d:"A thick-cut pork chop brought to the table still sizzling."},
+    {f:"Fried Pork Chop.jpg", n:"Fried Pork Chop", c:"mains", d:"Seasoned and pan-fried until the edges turn perfectly crisp."},
+    {f:"Crispy Pata.jpg", n:"Crispy Pata", c:"mains", t:"For Sharing", d:"Shatteringly crisp skin, fall-apart meat — a feast made to share."},
+    {f:"Braised Pork.jpg", n:"Braised Pork", c:"mains", d:"Slow-braised until tender and glossy in a rich, savory sauce."},
+    {f:"Sisig Platter.jpg", n:"Sisig Platter", c:"mains", t:"Crowd Favorite", d:"Sizzling, citrusy, and crowned with egg — best with extra rice."},
+    {f:"Calamares.jpg", n:"Calamares", c:"mains", d:"Lightly battered squid rings, fried crisp and golden."},
+    {f:"Sizzling Shrimp.jpg", n:"Sizzling Shrimp", c:"mains", d:"Plump shrimp seared on a hot plate in garlic butter."},
+    {f:"Fried Shrimp.jpg", n:"Fried Shrimp", c:"mains", d:"Crunchy on the outside, sweet and tender within."},
+    {f:"Chapsuey.jpg", n:"Chopsuey", c:"mains", d:"A bright, crisp-tender medley of vegetables in a light savory sauce."},
+    {f:"Chapseuy 2.jpg", n:"Chopsuey Special", c:"mains", d:"Our loaded take — extra veg, extra toppings, extra good."},
+    {f:"Bihon.jpg", n:"Pancit Bihon", c:"mains", d:"Thin rice noodles tossed with veg and savory bits — long-life favorite."},
+    {f:"Special Bam-i.jpg", n:"Special Bam-i", c:"mains", t:"Cebu Style", d:"The classic Cebuano duo of bihon and canton in one generous plate."},
+    {f:"Fresh Lumpia.jpg", n:"Fresh Lumpia", c:"mains", d:"Soft fresh spring rolls with a sweet-garlic sauce."},
+    {f:"Lumpiang Shanghai.jpg", n:"Lumpiang Shanghai", c:"mains", d:"Crispy hand-rolled pork lumpia, fried to a perfect crunch."},
+    {f:"Fries.jpg", n:"Golden Fries", c:"mains", d:"Crisp, salted, and impossible to stop at one."},
+    // Desserts & drinks
+    {f:"Special HaloHalo.jpg", n:"Special Halo-Halo", c:"sweets", t:"Our Signature", d:"Shaved ice layered with sweet beans, ube, leche flan and cheese on top."},
+    {f:"Mais Con Yelo.jpg", n:"Mais Con Yelo", c:"sweets", d:"Sweet corn and shaved ice swimming in cold creamy milk."},
+    {f:"Leche Flan.jpg", n:"Leche Flan", c:"sweets", d:"Silky caramel custard — rich, smooth, and just sweet enough."},
+    {f:"Chocolate Cake.jpg", n:"Chocolate Cake", c:"sweets", d:"A deep, moist slice of chocolate for the sweet tooth."},
+    {f:"Chocolate Shake.jpg", n:"Chocolate Shake", c:"sweets", d:"Thick, cold, and full of cocoa — pure throwback comfort."},
+    {f:"Mango Shake.jpg", n:"Mango Shake", c:"sweets", t:"Fresh", d:"Ripe mango blended frosty — sunshine in a glass."},
+    // Pastries
+    {f:"Pastry - Cakes.jpg", n:"House Cakes", c:"pastry", t:"Baked In-House", d:"Tender, frosted cakes for every craving and occasion."},
+    {f:"Pastry - Mini Cakes.jpg", n:"Mini Cakes", c:"pastry", d:"Single-serve little cakes — all the joy, just for you."},
+    {f:"Pastry - Chocolate Cake.jpg", n:"Chocolate Pastry Cake", c:"pastry", d:"Layered chocolate sponge with a glossy fudge finish."},
+    {f:"Pastry - Strawberry Cake.jpg", n:"Strawberry Cake", c:"pastry", d:"Soft sponge, sweet cream, and a berry-bright topping."},
+    {f:"Pastry - Cupcakes.jpg", n:"Cupcakes", c:"pastry", d:"Fluffy cupcakes swirled with buttercream frosting."},
+    {f:"Pastry - Cake Balls.jpg", n:"Cake Balls", c:"pastry", d:"Bite-size cake pops — one is never quite enough."},
+    {f:"Pastry - Empanada.jpg", n:"Empanada", c:"pastry", d:"Golden, flaky pastry with a savory-sweet filling."},
+    {f:"Pastry-Biscuits.jpg", n:"Buttery Biscuits", c:"pastry", d:"Light, crumbly biscuits — perfect with your kape."},
+    {f:"Pastry - Customized Cakes.jpg", n:"Customized Cakes", c:"pastry", t:"Made to Order", d:"Designed around your celebration — just tell us the theme."},
+    {f:"Customized Cake.jpg", n:"Celebration Cake", c:"pastry", t:"By Request", d:"A centerpiece cake, custom-decorated for the big day."},
+  ];
+
+  // Gallery — brand atmosphere + bulk orders + menu cover
+  const gallery = [
+    {f:"Pic of menu front cover.jpg", cap:"Our menu — flip through the favorites."},
+    {f:"Bulk Order.jpg", cap:"Bulk orders, cooked for the whole barangay."},
+    {f:"HaloHalo Bulk Order.jpg", cap:"Halo-halo by the batch for events."},
+    {f:"Bulk Orders.jpg", cap:"Party trays ready for your celebration."},
+  ];
+
+  // Reveal-on-scroll observer (declared early — used during first render)
+  let io;
+  function observeReveals(){
+    if(!io){
+      io = new IntersectionObserver(entries=>{
+        entries.forEach(en=>{ if(en.isIntersecting){ en.target.classList.add("in"); io.unobserve(en.target);} });
+      }, {threshold:.14});
+    }
+    document.querySelectorAll(".reveal:not(.in)").forEach(el=>io.observe(el));
+  }
+
+  // Render menu
+  const grid = document.getElementById("menuGrid");
+  function renderMenu(filter){
+    grid.innerHTML = "";
+    menu.filter(m => filter==="all" || m.c===filter).forEach(m => {
+      const tag = m.t ? `<span class="tagpill">${m.t}</span>` : "";
+      grid.insertAdjacentHTML("beforeend", `
+        <article class="card">
+          <div class="card-img">${tag}<img src="${P+m.f}" alt="${m.n}" loading="lazy"></div>
+          <div class="card-body"><h3>${m.n}</h3><p>${m.d}</p></div>
+        </article>`);
+    });
+    observeReveals();
+  }
+  renderMenu("all");
+
+  // Tabs
+  document.getElementById("tabs").addEventListener("click", e => {
+    const b = e.target.closest(".tab"); if(!b) return;
+    document.querySelectorAll(".tab").forEach(t=>t.classList.remove("active"));
+    b.classList.add("active");
+    renderMenu(b.dataset.filter);
+  });
+
+  // Render gallery
+  const mas = document.getElementById("masonry");
+  gallery.forEach(g => {
+    mas.insertAdjacentHTML("beforeend", `
+      <figure><img src="${P+g.f}" alt="${g.cap}" loading="lazy"><figcaption>${g.cap}</figcaption></figure>`);
+  });
+
+  // Nav scroll state
+  const nav = document.getElementById("nav");
+  const onScroll = () => nav.classList.toggle("scrolled", window.scrollY > 40);
+  onScroll(); window.addEventListener("scroll", onScroll, {passive:true});
+
+  // Mobile menu
+  const toggle = document.getElementById("navToggle");
+  const links = document.getElementById("navLinks");
+  toggle.addEventListener("click", () => {
+    const open = links.classList.toggle("open");
+    toggle.setAttribute("aria-expanded", open);
+  });
+  links.addEventListener("click", e => { if(e.target.tagName==="A") links.classList.remove("open"); });
+
+  document.getElementById("yr").textContent = new Date().getFullYear();
+</script>
+</body>
+</html>
